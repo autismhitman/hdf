@@ -6,7 +6,7 @@
        "parameternames":["action"],
         "executions":[
           {
-              "runmode" : "Y",
+              "runmode" : "N",
 		      "executionname":"New Stock",
 		      "dataflag":"addfreshstock",
 		      "parametervalues":["addstock"],

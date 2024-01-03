@@ -4,11 +4,11 @@
 	   "flag":"createnewportfolio",
 	    "data":[
 	     {
-	     "portfolioname":"Cat110111112",
+	     "portfolioname":"champ1",
 	     "runmode":"Y"
 	     },
 	     {
-	     "portfolioname":"Folio2022",
+	     "portfolioname":"champ2",
 	     "runmode":"N"
 	     }
 	    ]		
@@ -17,11 +17,11 @@
 	   "flag":"deleteportfolio",
 	    "data":[
 	     {
-	     "portfolioname":"Cat110111112",
+	     "portfolioname":"champ1",
 	     "runmode":"Y"
 	     },
 	     {
-	     "portfolioname":"Folio2022",
+	     "portfolioname":"champ2",
 	     "runmode":"N"
 	     }
 	    ]		

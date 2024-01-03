@@ -16,14 +16,15 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
+import driver.DriverScript;
 import keywords.ApplicationKeywords;
 import reports.ExtentManager;
 import runner.DataUtil;
 
 public class BaseTest {
 	
-	 
-	public ApplicationKeywords app;
+	public DriverScript ds ;
+	///public ApplicationKeywords app; //this will be required in driverscript
 	public ExtentReports rep;
 	public ExtentTest test;
 	
@@ -53,12 +54,13 @@ public class BaseTest {
 	        	test.log(Status.SKIP, "Skipping as Data Runmode is N");
 	        	throw new SkipException("Skipping as Data Runmode is N");
 			}
-		
-		app = new ApplicationKeywords();
-		app.setReport(test);
-		app.openBrowser("chrome");
-        app.defaultLogin();
-		con.setAttribute("app", app);
+	
+		ds = new DriverScript();//1 app keyword for entire test@ test
+		ds.setReport(test);
+		ds.defaultLogin("chrome");
+		//below is used to pass the json data
+		ds.setTestData(data);
+		con.setAttribute("driver", ds);
 		
 	
 		
@@ -78,7 +80,7 @@ public class BaseTest {
 				
 			}
 		
-		app = (ApplicationKeywords) con.getAttribute("app");
+		ds = ( DriverScript) con.getAttribute("driver");
 		rep = (ExtentReports) con.getAttribute("rep");
 		
 	}
@@ -88,10 +90,10 @@ public class BaseTest {
 	@AfterTest(alwaysRun=true)
 	public void afterTest(ITestContext con) {
 		
-		app =(ApplicationKeywords) con.getAttribute("app");
+		ds =( DriverScript) con.getAttribute("driver");
 		
-		if(app!=null)
-             app.quit();
+		if(ds!=null)
+             ds.quit();
 		
 		rep = (ExtentReports)con.getAttribute("rep");
 		
