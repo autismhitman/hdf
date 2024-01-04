@@ -5,7 +5,7 @@
 	    "data":[
 	     {
 	     "portfolioname":"champ1",
-	     "runmode":"Y"
+	     "runmode":"N"
 	     },
 	     {
 	     "portfolioname":"champ2",
@@ -18,7 +18,7 @@
 	    "data":[
 	     {
 	     "portfolioname":"champ1",
-	     "runmode":"Y"
+	     "runmode":"N"
 	     },
 	     {
 	     "portfolioname":"champ2",

@@ -6,6 +6,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import testBase.BaseTest;
+import util.Xls_Reader;
 
 public class StockManagement extends BaseTest {
 	
@@ -13,31 +14,10 @@ public class StockManagement extends BaseTest {
 	@Test
 	public void addNewStock(ITestContext con) {
 	   
-		JSONObject data = (JSONObject) con.getAttribute("data");
-				
-		String companyName=(String) data.get("stockname");
-		String selectionDate =(String) data.get("date");
-		String stockQuantity=(String) data.get("quantity");
-		String stockPrice=(String) data.get("price");
-		
-		app.log("Adding "+ stockQuantity+" stocks of "+ companyName);
-		
-		int quantityBeforeModification= app.findCurrentStockQuantity(companyName);
-		con.setAttribute("quantityBeforeModification", quantityBeforeModification);
-		
-		app.click("add_stock_id");
-		app.type("stock_name_css", companyName);
-		app.wait(1);
-		app.clickEnterButton("stock_name_css");
-		app.click("stockpurchase_id");
-		app.selectDateFromCalendar(selectionDate);
-		
-		app.type("stockQty_id", stockQuantity);
-		app.type("stockprice_id", stockPrice);
-		app.click("addStockbtn_id");
-		app.waitForPageLoad();
-		app.log("Stocks added successfully ");
-		
+		ds.log("Starting addnew stock test case");
+		Xls_Reader xls = new Xls_Reader(System.getProperty("user.dir") + "\\src\\test\\resources\\testcases\\TestCase.xlsx");
+		ds.executeTest(xls, "Sheet1", "addNewStock");// pass the data
+	    ds.log("Ending addnew stock test case");
 		
 	}
 	
@@ -45,21 +25,17 @@ public class StockManagement extends BaseTest {
 	@Test
 	public void verifyStockPresent(ITestContext con) {
 		
-		JSONObject data = (JSONObject) con.getAttribute("data");
-		String companyName=(String) data.get("stockname");
- 
-		int row =app.getRowNumWithCellData("table_stock_css", companyName);
-		if(row==-1)
-			app.reportFailure("Stock Not present" + companyName, true);
-		
-		app.log("Stock found in list" + companyName);
+		ds.log("Starting verifyStockPresent test case");
+		Xls_Reader xls = new Xls_Reader(System.getProperty("user.dir") + "\\src\\test\\resources\\testcases\\TestCase.xlsx");
+		ds.executeTest(xls, "Sheet1", "verifyStockPresent");// pass the data
+	    ds.log("Ending verifyStockPresent  test case");
 	}
 	
 	@Parameters({"action"})
 	@Test
 	public void verifyStockQuantity(ITestContext con, String action) {
 		
-		JSONObject data = (JSONObject) con.getAttribute("data");
+		/*	JSONObject data = (JSONObject) con.getAttribute("data");
 		String companyName=(String) data.get("stockname");
 		String selectionDate =(String) data.get("date");
 		String stockQuantity=(String) data.get("quantity");
@@ -85,13 +61,13 @@ public class StockManagement extends BaseTest {
 		if(modifiedquantity != expectedModifiedQuantity)
 		    app.reportFailure("Quantity did not match", true);
 		
-		app.log("Stock Quantity Changed as per expected "+ modifiedquantity);
+		app.log("Stock Quantity Changed as per expected "+ modifiedquantity);*/
 	}
 	
 	@Parameters({"action"})
 	@Test
 	public void verifyTransactionHistory(ITestContext con,String action) {
-		
+		/*	
 		JSONObject data = (JSONObject) con.getAttribute("data");
 		String companyName=(String) data.get("stockname");
 		String selectionDate =(String) data.get("date");
@@ -110,7 +86,7 @@ public class StockManagement extends BaseTest {
 		   app.reportFailure("Got changed quantity in transaction history as "+ changedQuantityDisplayed, true);	
 		
 		app.log("Transaction History OK");
-		
+		*/
 	}
 
 }

@@ -60,6 +60,7 @@ public class BaseTest {
 		ds.defaultLogin("chrome");
 		//below is used to pass the json data
 		ds.setTestData(data);
+		ds.setTestContext(con);
 		con.setAttribute("driver", ds);
 		
 	

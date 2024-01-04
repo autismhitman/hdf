@@ -25,7 +25,7 @@ public class PortfolioManagement extends BaseTest {
         ds.log("Staring create Portfolio test");
 		Xls_Reader xls = new Xls_Reader(System.getProperty("user.dir") + "\\src\\test\\resources\\testcases\\TestCase.xlsx");
 		ds.executeTest(xls, "Sheet1", "createPortfolio");// pass the data
-		  ds.log("Ending create Portfolio test");
+	    ds.log("Ending create Portfolio test");
 	}
 
 	@Test

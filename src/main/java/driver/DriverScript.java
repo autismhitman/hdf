@@ -1,6 +1,7 @@
 package driver;
 
 import org.json.simple.JSONObject;
+import org.testng.ITestContext;
 
 import com.aventstack.extentreports.ExtentTest;
 
@@ -11,6 +12,7 @@ public class DriverScript {
 	
 	ApplicationKeywords app;
 	JSONObject testData;
+	ITestContext con;
 	
 	public DriverScript() {
 		
@@ -19,13 +21,7 @@ public class DriverScript {
 		
 	}
 	
-/*	public static void main(String[] args) {
-		Xls_Reader xls = new Xls_Reader(System.getProperty("user.dir")+"\\src\\test\\resources\\testcases\\TestCase.xlsx");
-		DriverScript ds = new DriverScript();
-		ds.executeTest(xls, "Sheet1", "createPortfolio");
-		
-	}
-	*/
+
 	
 	public void executeTest(Xls_Reader xls, String sheet, String testName) {
 		int rows = xls.getRowCount(sheet);
@@ -59,6 +55,20 @@ public class DriverScript {
 					app.validateSelectedValueNotInDropDown(object, data);
 				else if	(keyword.equals("selectByVisibleText"))  
 					app.selectByVisibleText(object, data);
+				else if	(keyword.equals("findCurrentStockQuantity"))  
+					app.findCurrentStockQuantity(data, storeVal);
+				else if	(keyword.equals("clickEnterButton"))  
+					app.clickEnterButton(object);
+				else if	(keyword.equals("selectDateFromCalendar")) { 
+					app.selectDateFromCalendar(data);
+				System.out.println(con.getAttribute("quantityBeforeModification"));
+				}
+				else if	(keyword.equals("wait"))  
+					app.wait(Integer.parseInt(datakey));
+				else if	(keyword.equals("verifyStockPresent"))  
+					app.verifyStockPresent(data);
+				 
+				
 			}
 			
 			
@@ -94,6 +104,14 @@ public class DriverScript {
 	public void log(String logMessage) {
 		app.log(logMessage);
 		
+	}
+
+
+
+	public void setTestContext(ITestContext con) {
+		// TODO Auto-generated method stub
+		this.con = con;
+		app.setTestContext(con);
 	}
 	
 	

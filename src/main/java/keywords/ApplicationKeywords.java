@@ -57,20 +57,20 @@ public class ApplicationKeywords extends ValidationKeywords{
 		
 	}
 
-	public int findCurrentStockQuantity(String companyName) {
+	public void findCurrentStockQuantity(String companyName, String storeValue) {
 		log("Finding current stock quantity for "+ companyName);
 		
 		int row =getRowNumWithCellData("table_stock_css", companyName);
 		if (row==-1) {
-			
+			con.setAttribute(storeValue, String.valueOf("0"));
 			log("Current stock quantity is 0 as stock is not present in the list");
-			return 0;
+			return ;
 		}
 		
 		String quantity = driver.findElement(By.cssSelector(prop.getProperty("table_stock_css")+" > tr:nth-child("+row+") > td:nth-child(4)")).getText();
 		log("current stock quantiry " + quantity);
 		
-		return Integer.parseInt(quantity);
+		con.setAttribute(storeValue, quantity) ;
 	}
 
 	public void selectDateFromCalendar(String selectionDate) {

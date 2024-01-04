@@ -28,6 +28,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestContext;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -45,6 +46,7 @@ public class GenericKeywords {
 	public Properties envProp;
 	public ExtentTest test;
 	public SoftAssert sa;
+	public ITestContext con;
 
 	public WebDriver openBrowser(String browserName) {
 		log("Starting the borwser :" + browserName);
@@ -378,7 +380,9 @@ public class GenericKeywords {
 		 return -1;
 	 }
 	
-	
+	public void setTestContext(ITestContext con) {
+		this.con= con;
+	}
 
 //
 }
